@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header />
-    <Dischi />
+    <Header @changeSelect="filtraDischi"/>
+    <Dischi :genere = genereSelect />
   </div>
 </template>
 
@@ -14,7 +14,17 @@ export default {
   components: {
     Header,
     Dischi
-  }
+  },
+  data: function () {
+    return {
+      genereSelect: ''
+    }
+  },
+  methods: {
+    filtraDischi: function(select) {
+      this.genereSelect = select;
+    }
+  },
 }
 </script>
 

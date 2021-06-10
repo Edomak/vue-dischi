@@ -1,17 +1,39 @@
 <template>
   <header>
-      <img src="../assets/spotify.png" alt="Logo Spotify">
+        <img src="../assets/spotify.png" alt="Logo Spotify">
+        <div class="select">
+          <label for="generi">Filtra per genere:</label>
+
+            <select v-model="select" @change="$emit('changeSelect', select)" name="generi" id="generi">
+                <option value="All">All</option>
+                <option value="Rock">Rock</option>
+                <option value="Pop">Pop</option>
+                <option value="Jazz">Jazz</option>
+                <option value="Metal">Metal</option>
+            </select>
+        </div>
   </header>
 </template>
 
 <script>
 export default {
-    name: "Header"
+    name: "Header",
+    components: {
+        
+    },
+    data: function () {
+        return {
+            select: ""
+        } 
+    },
 }
 </script>
 
 <style lang="scss" scoped>
     header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         height: 80px;
         line-height: 80px;
         background-color: #2e3b46;
@@ -21,6 +43,23 @@ export default {
             vertical-align: middle;
             margin-left: 20px;
         }
-    }
 
+        .select {
+        margin-right: 20px;
+
+        label {
+            margin-right: 10px;
+        }
+
+        select {
+            border-radius: 5px;
+            padding: 8px 12px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+    
+    }  
+
+    
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <section>
       <div class="container">
-          <Disco v-for="(disco, index) in dischi" :key="index" :item="disco" />
+          <Disco v-for="(disco, index) in filtraDischi" :key="index" :item="disco" />
       </div>
   </section>
 </template>
@@ -12,12 +12,14 @@ import axios from 'axios';
 export default {
     name: "Dischi",
     components: {
-        Disco
+        Disco, 
     },
+    props: [ "genere" ],
+
     data: function () {
         return {
             apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
-            dischi: []
+            dischi: [],
         } 
     },
     created: function () {
@@ -30,6 +32,24 @@ export default {
                 // console.log(this.dischi);
             }
         )
+    },
+    computed: {
+        filtraDischi: function () {
+
+            const newArray = this.dischi.filter(
+                (element) => {
+                    // console.log(element.genre);
+                    // console.log(this.genere);
+                    if (element.genre == this.genere) {
+                        return element
+                    } else if (this.genere == "All"){
+                        return this.dischi;
+                    }
+                    
+                }
+            )
+            return newArray;
+        }
     }
 }
 </script>
