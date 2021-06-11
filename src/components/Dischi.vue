@@ -50,7 +50,7 @@ export default {
                 (element) => {
                     if (element.genre == this.genere) {
                         return element
-                    } else if (this.genere == "All"){
+                    } else if (this.genere == "" || this.genere == "All"){
                         return this.dischi;
                     }
                     
