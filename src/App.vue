@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <Header @changeSelect="filtraDischi"/>
-    <Dischi :genere = genereSelect />
+    <Header 
+    :generi="allGenres" @changeSelect="filtraDischi"/>
+    <Dischi @generiReady="generiMet"  :genere = genereSelect />
   </div>
 </template>
 
@@ -17,12 +18,16 @@ export default {
   },
   data: function () {
     return {
-      genereSelect: ''
+      genereSelect: '',
+      allGenres: []
     }
   },
   methods: {
     filtraDischi: function(select) {
       this.genereSelect = select;
+    },
+    generiMet: function(array) {
+      this.allGenres = array;
     }
   },
 }

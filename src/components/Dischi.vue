@@ -20,6 +20,7 @@ export default {
         return {
             apiUrl: "https://flynn.boolean.careers/exercises/api/array/music",
             dischi: [],
+            generi: []
         } 
     },
     created: function () {
@@ -30,6 +31,15 @@ export default {
                 // console.log(result.data);
                 this.dischi = result.data.response
                 // console.log(this.dischi);
+
+                this.dischi.forEach(
+                    (element) => {
+                        if(!this.generi.includes(element.genre)) {
+                            this.generi.push(element.genre);
+                        }
+                });
+                // console.log(this.generi);
+                this.$emit('generiReady', this.generi);
             }
         )
     },
@@ -38,8 +48,6 @@ export default {
 
             const newArray = this.dischi.filter(
                 (element) => {
-                    // console.log(element.genre);
-                    // console.log(this.genere);
                     if (element.genre == this.genere) {
                         return element
                     } else if (this.genere == "All"){

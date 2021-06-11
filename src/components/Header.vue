@@ -6,10 +6,7 @@
 
             <select v-model="select" @change="$emit('changeSelect', select)" name="generi" id="generi">
                 <option value="All">All</option>
-                <option value="Rock">Rock</option>
-                <option value="Pop">Pop</option>
-                <option value="Jazz">Jazz</option>
-                <option value="Metal">Metal</option>
+                <option :value="genre" v-for="(genre, index) in generi" :key="index">{{ genre }}</option>
             </select>
         </div>
   </header>
@@ -18,6 +15,9 @@
 <script>
 export default {
     name: "Header",
+    props: {
+        "generi": Array
+    },
     components: {
         
     },
